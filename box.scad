@@ -82,14 +82,18 @@ module fassung() {
     color("white")
     difference() {
         union () {
-            translate([-w/2-1, 0, 0])
-                cube([w+2, d+1.5, h]);
-            translate([-w/2-2, 0, h])
-                cube([w+4, d+1.5, 1]);
-            translate([-w/2-1, d+1.5, 1])
-                cube([w+2, 1, 1]);
+            translate([-w/2-2, 0, 0])
+                cube([w+4, d+1.5, h+1]);
+            translate([-w/2-2, d+1.5, 1])
+                cube([w+4, 1, 1]);
         }
         // cut outs:
+
+        // sides
+        translate([4.5,-.1,0])
+        cube([2, d-1, h-2]);
+        translate([-w+0.5,-.1,0])
+        cube([2, d-1, h-2]);
 
         // nose
         translate([-1.1,d-.1,1])
@@ -178,22 +182,29 @@ module klammer_oben() {
 // klammer: hinten
 
 module klammer_hinten() {
+    x=13;
+    y=3;
+    t=1;
     difference() {
-        cube([11,7,2]);
-        translate([1,-1,-0.5])
-            cube([9,7,3]);
+        cube([x,y+t*2,2]);
+        translate([2,-1,-0.5])
+            cube([x-t*4,y,3]);
+        translate([1,1,-0.5])
+            cube([x-t*2,y,3]);
     }
 }
 
 // == background
 
-translate([p-5.5,-47.5,2.5])
+translate([p-6.5,-47+2,2.5])
 color("#ff000066")
     %klammer_hinten();
 
-translate([p-6.5, -48, 8])
+translate([p-6.5, -48+3, 6])
+rotate([90,0,0])
 color("#ff000066")
-    %klammer_oben();
+    //%klammer_oben();
+    %klammer_hinten();
 
 translate([p-3.5,-49,1])
     %buchse();
@@ -205,13 +216,15 @@ translate([p-3.5,-49,1])
 
 box();
 
+/*
 for (i=[0:1]) {
     translate([-70,-0+(i*10),0])
     rotate([90,0,0])
         klammer_oben();
 }
+*/
 
-for (i=[0:1]) {
-    translate([-70,-20-(i*12),0])
+for (i=[0:3]) {
+    translate([-70,-10-(i*12),0])
         klammer_hinten();
 }
