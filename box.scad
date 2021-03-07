@@ -2,6 +2,9 @@
 use <modules/display.scad>;
 use <cover.scad>;
 
+// position of the socket
+p = 20;
+
 // casing
 
 module casing(x,y,h,t=1) {
@@ -17,12 +20,13 @@ module casing(x,y,h,t=1) {
 // box
 
 module box() {
+
     // case
     difference() {
         casing(100,100,20,1);
 
         // cut out hole for the plug
-        translate([0,-48, 5.5])
+        translate([p,-48, 5.5])
         rotate([90,0,0])
         // the hole is 6mm now, which is the outer ring
         cylinder(h=3, d=6, $fn=50);
@@ -33,7 +37,7 @@ module box() {
         cube([28,5,8]);
     }
 
-    translate([0,-50,0])
+    translate([p,-50,0])
     fassung();
 
     translate([47,-20,4])
@@ -44,6 +48,11 @@ module box() {
     translate([49,-22, 0])
     rotate([0,0,90])
     cube([42,5,3]);
+
+    // battery section
+    translate([-49, 9, 0])
+    rotate([0,0,-90])
+    battery_section();
 }
 
 module display_holder() {
@@ -70,6 +79,7 @@ module fassung() {
     h=9;
     d=7.5;
 
+    color("white")
     difference() {
         union () {
             translate([-w/2-1, 0, 0])
@@ -82,8 +92,8 @@ module fassung() {
         // cut outs:
 
         // nose
-        translate([-1,d-.1,1])
-            cube([2,2.7,1.1]);
+        translate([-1.1,d-.1,1])
+            cube([2.2,2.7,1.1]);
         translate([-w/2,-.1,1])
             cube([w,d+1.6,1.1]);
         // top cube 
@@ -92,7 +102,20 @@ module fassung() {
     }    
 }
 
+module battery_section() {
+    color("white")
+    difference() {
+        translate([-1,-1,0])
+        cube([60,50,18]);
+        // inner box
+        translate([0,0,1])
+        cube([58,48,19]);
 
+        // cable outlet
+        translate([-3,25,1])
+        cube([5,10,7]);
+    }
+}
 
 // buchse
 
@@ -164,15 +187,15 @@ module klammer_hinten() {
 
 // == background
 
-translate([-5.5,-47.5,2.5])
+translate([p-5.5,-47.5,2.5])
 color("#ff000066")
     %klammer_hinten();
 
-translate([-6.5, -48, 8])
+translate([p-6.5, -48, 8])
 color("#ff000066")
     %klammer_oben();
 
-translate([-3.5,-49,1])
+translate([p-3.5,-49,1])
     %buchse();
 
 *translate([-50,-50,20])
