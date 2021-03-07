@@ -73,19 +73,19 @@ module fassung() {
     difference() {
         union () {
             translate([-w/2-1, 0, 0])
-                cube([w+2, d+1, h]);
+                cube([w+2, d+1.5, h]);
             translate([-w/2-2, 0, h])
-                cube([w+4, d+1, 1]);
-            translate([-w/2-1, d+1, 1])
+                cube([w+4, d+1.5, 1]);
+            translate([-w/2-1, d+1.5, 1])
                 cube([w+2, 1, 1]);
         }
         // cut outs:
 
         // nose
         translate([-1,d-.1,1])
-            cube([2,2.1,1.1]);
+            cube([2,2.7,1.1]);
         translate([-w/2,-.1,1])
-            cube([w,d+1.1,1.1]);
+            cube([w,d+1.6,1.1]);
         // top cube 
         translate([-w/2,-.1,2])
             cube([w,d+2.1,h+1.1]);
