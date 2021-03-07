@@ -24,6 +24,13 @@ module display() {
         translate([0.75, -1.5, 0.75 + (i*3)])
         cube([.5,2,.5]);
     }
+
+    // resistors
+    for (i=[0:5]) {
+        color("brown")
+        translate([20, 1, i*2 + .5])
+        cube([1,1,1]);
+    }
 }
 
 display();

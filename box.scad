@@ -1,5 +1,5 @@
 
-use <display.scad>;
+use <modules/display.scad>;
 use <cover.scad>;
 
 // casing
@@ -50,11 +50,11 @@ module display_holder() {
 
     difference() {
         translate([-2,-2,-1])
-        cube([42,5,12]);
+        cube([42,6,12]);
 
         // cut out inner parts
         translate([0,-2-.1,0])
-        cube([39,3.5+.1,13]);
+        cube([39,4.5+.1,13]);
 
         // cut out pins
         translate([0,1,0])
