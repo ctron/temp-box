@@ -17,8 +17,10 @@ module casing(x,y,h,t=1) {
     t_nose = 0.8;
     t_all = 3;
 
+    /*
     translate([0,0,h])
     casing_noses(x, y ,l, g, t, t_hole, t_nose, t_all);
+    */
 }
 
 module casing_noses(x, y, l, g, t, t_hole, t_nose, t_all) {

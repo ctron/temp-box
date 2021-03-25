@@ -15,8 +15,8 @@ module board(x,y, nx, ny, t=1.6) {
 
         // holes
         color("darkgreen")
-        for (ix = [0: nx])
-        for (iy = [0: ny])
+        for (ix = [0: nx-1])
+        for (iy = [0: ny-1])
             translate([ix * a + ox, iy * a + oy, 1])
             cylinder(h=3, d=1, center=true, $fn=10);
 
@@ -24,14 +24,15 @@ module board(x,y, nx, ny, t=1.6) {
         color("darkgreen")
         translate([0,0,-1])
         union() {
-            off=.5;
-            translate([1+off, 1+off, 0])
+            xoff=0.5;
+            yoff=1;
+            translate([1+xoff, 1+yoff, 0])
             cylinder(h=3, d=2, $fn=10);
-            translate([x-1-off, 1+off, 0])
+            translate([x-1.5-xoff, 1+yoff, 0])
             cylinder(h=3, d=2, $fn=10);
-            translate([1+off, y-1-off, 0])
+            translate([1+xoff, y-1-yoff, 0])
             cylinder(h=3, d=2, $fn=10);
-            translate([x-1-off, y-1-off, 0])
+            translate([x-1.5-xoff, y-1-yoff, 0])
             cylinder(h=3, d=2, $fn=10);
         }
 

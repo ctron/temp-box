@@ -20,6 +20,6 @@ use <casing.scad>;
 
 translate([0, -10, 1])
 rotate([180,0,0])
-cover_noses(20,20,1);
+cover_squares(20,20,1);
 
-casing(20,20, 10);
+*casing(20,20, 10);

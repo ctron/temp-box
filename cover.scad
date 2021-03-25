@@ -18,6 +18,33 @@ module cover_pins(x,y,t) {
     cylinder(h=n,d=d, $fn=50);
 }
 
+module cover_squares(x,y,t) {
+    n=4;
+    d=2;
+
+    difference() {
+        cover_plate(x,y,t);
+
+        translate([0,1,.6])
+        scale([.03,.03,.2]) 
+        linear_extrude(height = 5, $fn=10) { 
+            //import("assets/drogueiot_onecolor_icon_reverse.dxf");
+            import("assets/rodney.svg");
+        }
+    }
+
+    translate([0,0,-n]) {
+        translate([x-d-t,y-d-t,0])
+        cube([d,d,n]);
+        translate([x-d-t,d-t,0])
+        cube([d,d,n]);
+        translate([d-t,y-d-t,0])
+        cube([d,d,n]);
+        translate([d-t,d-t,0])
+        cube([d,d,n]);
+    }
+}
+
 module cover_noses(x,y,t) {
     l = 3;
     g = 5;
@@ -70,5 +97,10 @@ module cover_nose(l, t, t_hole, t_nose, t_all) {
 
 // prints
 
-rotate([180,0,0])
+*rotate([180,0,0])
 cover_noses(40,20,1);
+
+rotate([180,0,0])
+cover_squares(40,20,1);
+
+%cover_squares(40,20,1);
