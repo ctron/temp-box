@@ -10,15 +10,15 @@ module board(x,y, nx, ny, t=1.6) {
         cube([x, y, t]);
 
         // side offset
-        ox = (x - (nx * a)) / 2;
-        oy = (y - (ny * a)) / 2;
+        ox = (x - (nx * a)) / 2 + 0.5;
+        oy = (y - (ny * a)) / 2 + 0.8;
 
         // holes
         color("darkgreen")
         for (ix = [0: nx-1])
         for (iy = [0: ny-1])
             translate([ix * a + ox, iy * a + oy, 1])
-            cylinder(h=3, d=1, center=true, $fn=10);
+            cylinder(h=3, d=1, center=true);
 
         // corner holes
         color("darkgreen")
