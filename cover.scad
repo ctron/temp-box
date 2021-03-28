@@ -25,7 +25,7 @@ module cover_squares(x,y,t) {
     difference() {
         cover_plate(x,y,t);
 
-        translate([0,1,.6])
+        *translate([0,1,.6])
         scale([.03,.03,.2]) 
         linear_extrude(height = 5, $fn=10) { 
             //import("assets/drogueiot_onecolor_icon_reverse.dxf");
@@ -42,6 +42,33 @@ module cover_squares(x,y,t) {
         cube([d,d,n]);
         translate([d-t,d-t,0])
         cube([d,d,n]);
+    }
+}
+
+module cover_bars(x,y,t) {
+    n=4;
+    d=2;
+
+    difference() {
+        cover_plate(x,y,t);
+
+        *translate([0,1,.6])
+        scale([.03,.03,.2]) 
+        linear_extrude(height = 5, $fn=10) { 
+            //import("assets/drogueiot_onecolor_icon_reverse.dxf");
+            import("assets/rodney.svg");
+        }
+    }
+
+    #translate([0,0,-n]) {
+        translate([d,d,0])
+        cube([x-2*d,d,n]);
+        translate([d,y-2*d,0])
+        cube([x-2*d,d,n]);
+        translate([d,d,0])
+        cube([d,y-2*d,n]);
+        translate([x-2*d,d,0])
+        cube([d,y-2*d,n]);
     }
 }
 
@@ -100,7 +127,13 @@ module cover_nose(l, t, t_hole, t_nose, t_all) {
 *rotate([180,0,0])
 cover_noses(40,20,1);
 
+x = 80;
+y = 110;
+
+*rotate([180,0,0])
+cover_squares(x,y,1);
+
 rotate([180,0,0])
-cover_squares(40,20,1);
+cover_bars(x,y,1);
 
 %cover_squares(40,20,1);
