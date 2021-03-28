@@ -60,15 +60,18 @@ module cover_bars(x,y,t) {
         }
     }
 
-    #translate([0,0,-n]) {
-        translate([d,d,0])
-        cube([x-2*d,d,n]);
-        translate([d,y-2*d,0])
-        cube([x-2*d,d,n]);
-        translate([d,d,0])
+    translate([0,0,-n]) {
+        translate([t,t,0])
+        cube([x-2*t,d,n]);
+
+        translate([t,y-d-t,0])
+        cube([x-d-t,d,n]);
+
+        translate([t,t,0])
         cube([d,y-2*d,n]);
-        translate([x-2*d,d,0])
-        cube([d,y-2*d,n]);
+
+        translate([x-d-t,t,0])
+        cube([d,y-2*t,n]);
     }
 }
 
